@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "description": "Knowledge Base 2.0: a knowledge base where lifecycle, ownership, review and gap detection are enforced rules, not conventions.",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
