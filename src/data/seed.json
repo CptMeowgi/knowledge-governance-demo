@@ -1,0 +1,339 @@
+{
+  "people": [
+    { "id": "kim", "name": "Kim Osei", "title": "Knowledge Manager", "active": true, "role": "knowledge_manager" },
+    { "id": "omar", "name": "Omar Haddad", "title": "Service Desk Lead", "active": true, "role": "contributor" },
+    { "id": "rui", "name": "Rui Costa", "title": "Senior Service Desk Analyst", "active": true, "role": "contributor" },
+    { "id": "ava", "name": "Ava Lindqvist", "title": "Service Desk Analyst", "active": true, "role": "contributor" },
+    { "id": "priya", "name": "Priya Raman", "title": "Endpoint Engineer", "active": true, "role": "contributor" },
+    { "id": "tomas", "name": "Tomás Herrera", "title": "Collaboration Platform Lead", "active": true, "role": "contributor" },
+    { "id": "grace", "name": "Grace Mbeki", "title": "Workplace Coordinator", "active": true, "role": "contributor" },
+    { "id": "lee", "name": "Lee Moran", "title": "Service Desk Analyst", "active": false, "role": "contributor" },
+    { "id": "sasha", "name": "Sasha Novak", "title": "Endpoint Engineer", "active": false, "role": "contributor" }
+  ],
+  "sections": [
+    { "id": "accounts", "name": "Accounts & Access", "description": "Signing in, passwords, multi-factor authentication and access requests.", "ownerId": "omar", "defaultReviewerId": "rui" },
+    { "id": "devices", "name": "Devices", "description": "Laptops, printers, the VPN and keeping devices up to date.", "ownerId": "priya", "defaultReviewerId": "rui" },
+    { "id": "collab", "name": "Collaboration Tools", "description": "Calendars, chat, video meetings and shared storage.", "ownerId": "tomas", "defaultReviewerId": "grace" },
+    { "id": "workplace", "name": "Workplace", "description": "Desks, buildings, parking and facilities requests.", "ownerId": "grace", "defaultReviewerId": "omar" },
+    { "id": "joiners", "name": "New Joiners", "description": "Everything a new starter and their manager need for the first weeks.", "ownerId": "lee", "defaultReviewerId": "ava" }
+  ],
+  "glossary": [
+    { "id": "sign-in", "preferred": "sign in", "avoid": ["log in", "login", "logon", "log on"], "definition": "Prove who you are to get into an account or service." },
+    { "id": "mfa", "preferred": "multi-factor authentication", "avoid": ["2FA", "two-factor authentication", "two-step verification"], "definition": "A second check on top of your password, such as approving a prompt on your phone." },
+    { "id": "service-desk", "preferred": "service desk", "avoid": ["help desk", "helpdesk", "IT support"], "definition": "The team that handles requests and fixes problems." },
+    { "id": "laptop", "preferred": "laptop", "avoid": ["notebook"], "definition": "A portable computer issued by the organisation." },
+    { "id": "shared-storage", "preferred": "shared storage", "avoid": ["network drive", "shared drive", "file share"], "definition": "Team file storage managed by the organisation." },
+    { "id": "video-meeting", "preferred": "video meeting", "avoid": ["video call", "web call", "conference call"], "definition": "A meeting held over the organisation's video tool." }
+  ],
+  "articles": [
+    {
+      "id": "reset-password", "sectionId": "accounts", "type": "how-to", "state": "published",
+      "title": "Reset your password",
+      "body": {
+        "goal": "Get back into your account if you've forgotten your password or it has expired.",
+        "before": "You need the phone number or personal email address registered on your account.",
+        "steps": "1. Go to the self-service password page from the sign-in screen.\n2. Enter your work email address and choose Next.\n3. Pick where to receive a code and enter it when it arrives.\n4. Choose a new password that meets the rules shown on screen.",
+        "result": "You can sign in with your new password straight away. Other devices ask for it the next time they connect."
+      },
+      "authorId": "ava", "ownerId": "omar", "reviewerId": "rui", "reviewIntervalDays": 180,
+      "createdDaysAgo": 420, "publishedDaysAgo": 415, "reviewedDaysAgo": 40,
+      "usage": { "viewsPerDay": 6, "ratingsPerView": 0.06, "helpfulShare": 0.92, "reasons": ["missing_steps"], "complaints": ["I don't have a personal email address registered."] }
+    },
+    {
+      "id": "mfa-setup", "sectionId": "accounts", "type": "how-to", "state": "published",
+      "title": "Set up multi-factor authentication",
+      "body": {
+        "goal": "Add a second check to your account so a stolen password isn't enough to get in.",
+        "before": "Install the authenticator app on your phone.",
+        "steps": "1. Sign in to your account settings page.\n2. Choose Security info, then Add method.\n3. Pick Authenticator app and scan the code shown on screen.\n4. Approve the test prompt on your phone.",
+        "result": "Next time you sign in, your phone asks you to approve the request."
+      },
+      "authorId": "omar", "ownerId": "omar", "reviewerId": "rui", "reviewIntervalDays": 180,
+      "createdDaysAgo": 380, "publishedDaysAgo": 375, "reviewedDaysAgo": 70,
+      "revision": {
+        "title": "Set up multi-factor authentication",
+        "body": {
+          "goal": "Add a second check to your account so a stolen password isn't enough to get in.",
+          "before": "Install the authenticator app on your phone.",
+          "steps": "1. Sign in to your account settings page.\n2. Choose Security info, then Add sign-in method.\n3. Pick Authenticator app and scan the code shown on screen.\n4. Approve the test prompt on your phone.\n\nChanged phones? Add the app on your new phone first, then remove the old one under Security info. If you no longer have the old phone, contact the service desk to reset your methods.",
+          "result": "Next time you sign in, your phone asks you to approve the request."
+        },
+        "authorId": "ava", "state": "in_review", "startedDaysAgo": 6, "submittedDaysAgo": 2
+      },
+      "usage": {
+        "viewsPerDay": 4, "ratingsPerView": 0.1, "helpfulShare": 0.48,
+        "reasons": ["missing_steps", "out_of_date", "missing_steps"],
+        "complaints": ["Nothing about what to do if you changed phones.", "The Security info screen looks different now.", "I was locked out after switching phones and this didn't help."]
+      }
+    },
+    {
+      "id": "account-locked", "sectionId": "accounts", "type": "troubleshooting", "state": "published",
+      "title": "Account locked after failed sign-in attempts",
+      "body": {
+        "symptom": "You see \"Your account is temporarily locked\" when you try to sign in.",
+        "cause": "Too many wrong passwords in a short time. Often an old password saved on a phone or tablet keeps retrying in the background.",
+        "resolution": "1. Wait 15 minutes. The lock clears on its own.\n2. Update the saved password on every device that syncs your mail.\n3. Sign in again.",
+        "escalation": "If you're still locked out after 30 minutes, contact the service desk."
+      },
+      "authorId": "rui", "ownerId": "omar", "reviewerId": "ava", "reviewIntervalDays": 90,
+      "createdDaysAgo": 300, "publishedDaysAgo": 290, "reviewedDaysAgo": 120,
+      "usage": { "viewsPerDay": 1, "ratingsPerView": 0.1, "helpfulShare": 0.8, "reasons": ["out_of_date"], "complaints": [] }
+    },
+    {
+      "id": "shared-mailbox", "sectionId": "accounts", "type": "how-to", "state": "published",
+      "title": "Request access to a shared mailbox",
+      "body": {
+        "goal": "Get access to a team mailbox so you can read and send from it.",
+        "before": "Find out who owns the mailbox. Only the owner can approve access.",
+        "steps": "1. Open the request catalogue and choose Shared mailbox access.\n2. Enter the mailbox address and the access you need.\n3. Submit. The mailbox owner gets an approval request.",
+        "result": "The mailbox appears in your mail app within a few hours of approval."
+      },
+      "authorId": "lee", "ownerId": "lee", "reviewerId": "rui", "reviewIntervalDays": 180,
+      "createdDaysAgo": 250, "publishedDaysAgo": 245, "reviewedDaysAgo": 100,
+      "usage": { "viewsPerDay": 0.8, "ratingsPerView": 0.08, "helpfulShare": 0.85, "reasons": ["missing_steps"], "complaints": [] }
+    },
+    {
+      "id": "vpn-home", "sectionId": "devices", "type": "how-to", "state": "published",
+      "title": "Connect to the VPN from home",
+      "body": {
+        "goal": "Reach internal systems securely when you're not in the office.",
+        "before": "You need a company laptop with the VPN client installed. It's installed by default.",
+        "steps": "1. Connect to your home internet.\n2. Open the VPN client from the taskbar.\n3. Choose Connect and sign in when prompted.\n4. Wait for the status to show Connected.",
+        "result": "The VPN creates an encrypted tunnel to the office network, so internal sites open as if you were in the building."
+      },
+      "authorId": "priya", "ownerId": "priya", "reviewerId": "rui", "reviewIntervalDays": 180,
+      "createdDaysAgo": 500, "publishedDaysAgo": 495, "reviewedDaysAgo": 30,
+      "usage": { "viewsPerDay": 4, "ratingsPerView": 0.07, "helpfulShare": 0.82, "reasons": ["incorrect"], "complaints": ["Doesn't explain why video meetings get slower on the VPN."] }
+    },
+    {
+      "id": "laptop-charging", "sectionId": "devices", "type": "troubleshooting", "state": "published",
+      "title": "Laptop won't charge",
+      "body": {
+        "symptom": "The battery icon doesn't show charging, or the laptop dies even when it's plugged in.",
+        "cause": "Usually a loose or faulty charger, or a docking station that isn't supplying enough power.",
+        "resolution": "1. Plug the charger straight into the wall, not the docking station.\n2. Try a different socket and check the light on the charger.\n3. Restart the laptop with the charger connected.",
+        "escalation": "If it still won't charge, request a replacement charger. Don't open the laptop."
+      },
+      "authorId": "priya", "ownerId": "priya", "reviewerId": "ava", "reviewIntervalDays": 90,
+      "createdDaysAgo": 320, "publishedDaysAgo": 315, "reviewedDaysAgo": 200,
+      "usage": { "viewsPerDay": 3.5, "ratingsPerView": 0.025, "helpfulShare": 0.7, "reasons": ["out_of_date"], "complaints": [] }
+    },
+    {
+      "id": "printer-offline", "sectionId": "devices", "type": "troubleshooting", "state": "published",
+      "title": "Printer shows as offline",
+      "body": {
+        "symptom": "Print jobs sit in the queue and the printer is marked Offline.",
+        "cause": "The laptop has lost its connection to the print server, often after a network change.",
+        "resolution": "1. Make sure you're on the office network or the VPN.\n2. Remove the printer and add it again from the printer list.\n3. Print a test page.",
+        "escalation": "If other people can't print either, report a printer fault so a technician can check it."
+      },
+      "authorId": "ava", "ownerId": "priya", "reviewerId": "rui", "reviewIntervalDays": 90,
+      "createdDaysAgo": 200, "publishedDaysAgo": 195, "reviewedDaysAgo": 20,
+      "usage": { "viewsPerDay": 1, "ratingsPerView": 0.1, "helpfulShare": 0.85, "reasons": ["missing_steps"], "complaints": [] }
+    },
+    {
+      "id": "replacement-laptop", "sectionId": "devices", "type": "how-to", "state": "published",
+      "title": "Order a replacement laptop",
+      "body": {
+        "goal": "Replace a laptop that's broken, lost or too old for your work.",
+        "before": "Back up anything stored only on the laptop to shared storage.",
+        "steps": "1. Open the request catalogue and choose Replacement laptop.\n2. Give the asset tag and the reason.\n3. Your manager approves the request.\n4. Collect the new laptop or have it sent to you.",
+        "result": "You receive a laptop with your apps installed. Return the old one within two weeks."
+      },
+      "authorId": "sasha", "ownerId": "sasha", "reviewerId": "priya", "reviewIntervalDays": 180,
+      "createdDaysAgo": 400, "publishedDaysAgo": 395, "reviewedDaysAgo": 250,
+      "usage": { "viewsPerDay": 0.7, "ratingsPerView": 0.08, "helpfulShare": 0.75, "reasons": ["out_of_date"], "complaints": [] }
+    },
+    {
+      "id": "supported-os", "sectionId": "devices", "type": "reference", "state": "published",
+      "title": "Supported operating systems",
+      "body": {
+        "summary": "Company laptops run the current and previous major operating system versions. Older versions lose access to internal systems.",
+        "details": "Updates install automatically during the monthly maintenance window. A laptop that misses two windows in a row is blocked from the VPN until it updates. Personal devices can reach email and chat, but not internal systems.",
+        "related": "Connect to the VPN from home"
+      },
+      "authorId": "priya", "ownerId": "priya", "reviewerId": "rui", "reviewIntervalDays": 365,
+      "createdDaysAgo": 420, "publishedDaysAgo": 410, "reviewedDaysAgo": 400,
+      "usage": { "viewsPerDay": 0, "ratingsPerView": 0, "helpfulShare": 1, "reasons": [], "complaints": [] }
+    },
+    {
+      "id": "encrypt-usb", "sectionId": "devices", "type": "how-to", "state": "draft",
+      "title": "Encrypt a USB drive",
+      "body": {
+        "goal": "Protect the files on a USB drive so nobody can read them if it's lost.",
+        "before": "",
+        "steps": "1. Log in to your laptop as usual and insert the drive.\n2. Right-click the drive and choose Turn on encryption.\n3. Set a password and save the recovery key to shared storage.",
+        "result": ""
+      },
+      "authorId": "ava", "ownerId": "priya", "reviewerId": "rui", "reviewIntervalDays": 180,
+      "createdDaysAgo": 3
+    },
+    {
+      "id": "share-calendar", "sectionId": "collab", "type": "how-to", "state": "published",
+      "title": "Share your calendar with your team",
+      "body": {
+        "goal": "Let teammates see when you're free or busy.",
+        "before": "",
+        "steps": "1. Open your calendar and choose Share.\n2. Add your team's group, or individual names.\n3. Pick how much they can see: free/busy only, or full details.",
+        "result": "Your teammates see your calendar alongside theirs."
+      },
+      "authorId": "tomas", "ownerId": "tomas", "reviewerId": "grace", "reviewIntervalDays": 180,
+      "createdDaysAgo": 260, "publishedDaysAgo": 255, "reviewedDaysAgo": 90,
+      "usage": { "viewsPerDay": 1.5, "ratingsPerView": 0.08, "helpfulShare": 0.9, "reasons": ["hard_to_follow"], "complaints": [] }
+    },
+    {
+      "id": "join-meeting-browser", "sectionId": "collab", "type": "how-to", "state": "published",
+      "title": "Join a video meeting from a browser",
+      "body": {
+        "goal": "Join a video meeting without installing the app, for example on a borrowed computer.",
+        "before": "Use an up-to-date browser and allow camera and microphone access when asked.",
+        "steps": "1. Open the meeting link from your invitation.\n2. Choose Continue in this browser.\n3. Enter your name and choose Join now.",
+        "result": "You join the meeting with audio and video."
+      },
+      "authorId": "tomas", "ownerId": "tomas", "reviewerId": "grace", "reviewIntervalDays": 180,
+      "createdDaysAgo": 150, "publishedDaysAgo": 145, "reviewedDaysAgo": 145,
+      "usage": { "viewsPerDay": 1, "ratingsPerView": 0.08, "helpfulShare": 0.85, "reasons": ["incorrect"], "complaints": [] }
+    },
+    {
+      "id": "meetings-home-wifi", "sectionId": "collab", "type": "troubleshooting", "state": "in_review",
+      "title": "Video meetings drop on home Wi-Fi",
+      "body": {
+        "symptom": "Your video freezes, or you drop out of video meetings, when you work from home.",
+        "cause": "A weak Wi-Fi signal, or the VPN sending meeting traffic through the office.",
+        "resolution": "1. Move closer to your router, or use a cable.\n2. Close other apps that use a lot of bandwidth.\n3. Disconnect from the VPN for the meeting if you don't need internal systems.",
+        "escalation": "If meetings drop on a wired connection too, contact the service desk with the time of the meeting."
+      },
+      "authorId": "ava", "ownerId": "tomas", "reviewerId": "rui", "reviewIntervalDays": 90,
+      "createdDaysAgo": 10, "submittedDaysAgo": 6
+    },
+    {
+      "id": "recover-deleted-file", "sectionId": "collab", "type": "how-to", "state": "published",
+      "title": "Recover a deleted file from shared storage",
+      "body": {
+        "goal": "Get back a file that was deleted from your team's shared storage.",
+        "before": "You need edit access to the folder the file was in.",
+        "steps": "1. Open the folder in shared storage.\n2. Choose Recycle bin.\n3. Select the file and choose Restore.",
+        "result": "The file returns to its original folder. Deleted files stay in the recycle bin for 90 days."
+      },
+      "authorId": "tomas", "ownerId": "tomas", "reviewerId": "grace", "reviewIntervalDays": 180,
+      "createdDaysAgo": 300, "publishedDaysAgo": 295, "reviewedDaysAgo": 172,
+      "usage": { "viewsPerDay": 1, "ratingsPerView": 0.08, "helpfulShare": 0.85, "reasons": ["missing_steps"], "complaints": [] }
+    },
+    {
+      "id": "chat-app", "sectionId": "collab", "type": "how-to", "state": "published",
+      "title": "Set up the chat app",
+      "body": {
+        "goal": "Get the chat app working on your laptop and your phone.",
+        "before": "",
+        "steps": "1. Install the chat app from the software centre.\n2. Sign in with your work account.\n3. Install the mobile app and sign in there too.",
+        "result": "Your messages and channels appear on both devices."
+      },
+      "authorId": "tomas", "ownerId": "tomas", "reviewerId": "grace", "reviewIntervalDays": 180,
+      "createdDaysAgo": 90, "publishedDaysAgo": 85, "reviewedDaysAgo": 85,
+      "usage": { "viewsPerDay": 1.2, "ratingsPerView": 0.08, "helpfulShare": 0.9, "reasons": ["missing_steps"], "complaints": [] }
+    },
+    {
+      "id": "old-chat-client", "sectionId": "collab", "type": "how-to", "state": "retired",
+      "title": "Set up the old chat client",
+      "body": {
+        "goal": "Install the previous chat client.",
+        "before": "",
+        "steps": "1. Download the installer from the intranet.\n2. Run it and sign in.",
+        "result": "The client opens with your contacts."
+      },
+      "authorId": "tomas", "ownerId": "tomas", "reviewerId": "grace", "reviewIntervalDays": 180,
+      "createdDaysAgo": 600, "publishedDaysAgo": 595, "reviewedDaysAgo": 200,
+      "retirement": { "reason": "superseded", "supersededBy": "chat-app", "note": "Replaced by the new chat app.", "retiredDaysAgo": 80 }
+    },
+    {
+      "id": "book-desk", "sectionId": "workplace", "type": "how-to", "state": "published",
+      "title": "Book a desk",
+      "body": {
+        "goal": "Reserve a desk for the days you're in the office.",
+        "before": "",
+        "steps": "1. Open the desk booking page.\n2. Pick the office, the floor and the date.\n3. Choose a free desk on the floor plan and confirm.",
+        "result": "You get a confirmation with the desk number. Bookings not checked in by 10:00 are released."
+      },
+      "authorId": "grace", "ownerId": "grace", "reviewerId": "omar", "reviewIntervalDays": 180,
+      "createdDaysAgo": 350, "publishedDaysAgo": 345, "reviewedDaysAgo": 60,
+      "usage": { "viewsPerDay": 5, "ratingsPerView": 0.05, "helpfulShare": 0.88, "reasons": ["hard_to_follow"], "complaints": [] }
+    },
+    {
+      "id": "facilities-issue", "sectionId": "workplace", "type": "how-to", "state": "published",
+      "title": "Report a facilities issue",
+      "body": {
+        "goal": "Get a building problem fixed, such as broken lighting, heating or a leak.",
+        "before": "Note the floor and the nearest room or desk number.",
+        "steps": "1. Open the request catalogue and choose Facilities issue.\n2. Describe the problem and where it is.\n3. Add a photo if it helps.",
+        "result": "The facilities team confirms and gives you a reference number."
+      },
+      "authorId": "grace", "ownerId": "grace", "reviewerId": "omar", "reviewIntervalDays": 180,
+      "createdDaysAgo": 200, "publishedDaysAgo": 195, "reviewedDaysAgo": 100,
+      "usage": { "viewsPerDay": 0.8, "ratingsPerView": 0.08, "helpfulShare": 0.85, "reasons": ["missing_steps"], "complaints": [] }
+    },
+    {
+      "id": "parking-permits", "sectionId": "workplace", "type": "reference", "state": "published",
+      "title": "Parking permits",
+      "body": {
+        "summary": "Staff can apply for a monthly parking permit for the main office car park.",
+        "details": "Permits cost a monthly fee taken from salary. Spaces are limited, so permits go first to people in the office three or more days a week. Apply through the request catalogue.",
+        "related": "Book a desk"
+      },
+      "authorId": "grace", "ownerId": "grace", "reviewerId": "omar", "reviewIntervalDays": 365,
+      "createdDaysAgo": 330, "publishedDaysAgo": 325, "reviewedDaysAgo": 200,
+      "usage": {
+        "viewsPerDay": 0.5, "ratingsPerView": 0.4, "helpfulShare": 0.34,
+        "reasons": ["out_of_date", "incorrect", "out_of_date"],
+        "complaints": ["The fee changed in spring and this still shows the old process.", "It says three days a week, but the rule is now two.", "Nothing about the electric vehicle charging spaces."]
+      }
+    },
+    {
+      "id": "first-day", "sectionId": "joiners", "type": "how-to", "state": "published",
+      "title": "Your first day: accounts and equipment",
+      "body": {
+        "goal": "Get signed in and set up on your first day.",
+        "before": "Your manager receives your temporary password before you start.",
+        "steps": "1. Collect your laptop from reception.\n2. Sign in with the temporary password and choose a new one.\n3. Set up multi-factor authentication.\n4. Book a desk for the rest of your first week.",
+        "result": "You can reach email, chat and the systems your role needs."
+      },
+      "authorId": "grace", "ownerId": "grace", "reviewerId": "ava", "reviewIntervalDays": 180,
+      "createdDaysAgo": 220, "publishedDaysAgo": 215, "reviewedDaysAgo": 130,
+      "usage": { "viewsPerDay": 0.9, "ratingsPerView": 0.1, "helpfulShare": 0.85, "reasons": ["missing_steps"], "complaints": [] }
+    },
+    {
+      "id": "joiner-checklist", "sectionId": "joiners", "type": "reference", "state": "draft",
+      "title": "New joiner checklist for managers",
+      "body": {
+        "summary": "What a manager arranges before and during a new starter's first week.",
+        "details": "",
+        "related": "Your first day: accounts and equipment"
+      },
+      "authorId": "grace", "ownerId": "grace", "reviewerId": "ava", "reviewIntervalDays": 365,
+      "createdDaysAgo": 4
+    }
+  ],
+  "searches": [
+    { "query": "reset password", "perWeek": 8, "openRate": 0.9 },
+    { "query": "forgot password", "perWeek": 4, "openRate": 0.9 },
+    { "query": "book a desk", "perWeek": 5, "openRate": 0.9 },
+    { "query": "2FA setup", "perWeek": 3, "openRate": 0.85 },
+    { "query": "login locked", "perWeek": 2, "openRate": 0.8 },
+    { "query": "vpn", "perWeek": 4, "openRate": 0.85 },
+    { "query": "printer offline", "perWeek": 1, "openRate": 0.85 },
+    { "query": "share calendar", "perWeek": 1, "openRate": 0.85 },
+    { "query": "parking permit", "perWeek": 1, "openRate": 0.8 },
+    { "query": "vpn split tunnel", "perWeek": 5, "openRate": 0.05 },
+    { "query": "split tunnel vpn setup", "perWeek": 1.5, "openRate": 0.05 },
+    { "query": "expense receipt upload", "perWeek": 2.5, "openRate": 0 },
+    { "query": "upload expense receipts", "perWeek": 1.5, "openRate": 0 },
+    { "query": "expense receipts", "perWeek": 0.8, "openRate": 0 },
+    { "query": "guest wifi", "perWeek": 1.2, "openRate": 0 },
+    { "query": "wifi for guests", "perWeek": 0.8, "openRate": 0 },
+    { "query": "guest wifi password", "perWeek": 0.5, "openRate": 0 },
+    { "query": "screen recording", "perWeek": 0.4, "openRate": 0 }
+  ],
+  "triage": [
+    { "gapKey": "article:mfa-setup", "status": "in_progress", "daysAgo": 8, "assigneeId": "ava", "linkedArticleId": "mfa-setup" },
+    { "gapKey": "search:guest wifi", "status": "dismissed", "daysAgo": 25, "note": "Visitor Wi-Fi is handled by reception, not the service desk.", "peopleFailedAtDismissal": 4 }
+  ]
+}
