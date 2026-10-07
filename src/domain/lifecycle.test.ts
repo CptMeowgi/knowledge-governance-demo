@@ -306,8 +306,15 @@ describe("creating a draft", () => {
     expect(result.ok && result.article.ownerId).toBe("ava");
   });
 
-  it("never makes the author the default reviewer", () => {
+  it("asks the section owner to review when the author is the section's default reviewer", () => {
     const result = createDraft({ id: "new", sectionId: "accounts", type: "how-to", title: "x" }, as("rui"));
+    expect(result.ok && result.article.reviewerId).toBe("omar");
+  });
+
+  it("leaves the reviewer empty rather than making the author review their own draft", () => {
+    const result = createDraft({ id: "new", sectionId: "accounts", type: "how-to", title: "x" }, as("omar", kb({
+      sections: [{ id: "accounts", name: "Accounts", description: "", ownerId: "omar", defaultReviewerId: "omar" }],
+    })));
     expect(result.ok && result.article.reviewerId).toBeNull();
   });
 });

@@ -371,7 +371,8 @@ export interface NewDraft {
 /**
  * Starts a new draft. Ownership defaults to the section owner (or the author,
  * if the section owner has left), the reviewer to the section's default
- * reviewer, and the review interval to the template's default.
+ * reviewer (or the section owner, if the author is the default reviewer), and
+ * the review interval to the template's default.
  */
 export function createDraft(input: NewDraft, context: ActionContext): TransitionResult {
   const { kb } = context;
@@ -382,7 +383,9 @@ export function createDraft(input: NewDraft, context: ActionContext): Transition
   if (!section) return { ok: false, reasons: ["Pick a section."] };
 
   const activeOrNull = (id: string | null) => (findPerson(kb, id)?.active ? id : null);
-  const defaultReviewer = activeOrNull(section.defaultReviewerId);
+  // Nobody reviews their own work, so the author is never the default reviewer.
+  const notAuthor = (id: string | null) => (id === actor.id ? null : id);
+  const sectionOwner = activeOrNull(section.ownerId);
 
   return {
     ok: true,
@@ -394,9 +397,8 @@ export function createDraft(input: NewDraft, context: ActionContext): Transition
       body: emptyBody(input.type),
       state: "draft",
       authorId: actor.id,
-      ownerId: activeOrNull(section.ownerId) ?? actor.id,
-      // Nobody reviews their own work, so the author is never the default reviewer.
-      reviewerId: defaultReviewer === actor.id ? null : defaultReviewer,
+      ownerId: sectionOwner ?? actor.id,
+      reviewerId: notAuthor(activeOrNull(section.defaultReviewerId)) ?? notAuthor(sectionOwner),
       reviewIntervalDays: TEMPLATES[input.type].defaultReviewIntervalDays,
       lastReviewedAt: null,
       history: [{ at: context.now.toISOString(), actorId: actor.id, action: "create", from: null, to: "draft" }],
