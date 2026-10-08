@@ -9,20 +9,8 @@ import type { ActionType, Article, Body, FeedbackReason, HistoryEntry, Retiremen
 import { useStore } from "../store/store";
 import { Badge, Notice, OwnershipFlags, PersonName, Reasons, ReviewBadge, StateBadge } from "../ui/bits";
 import { percent, plural, relativeDays, shortDate } from "../ui/format";
+import { FEEDBACK_REASONS, RETIREMENT_REASONS } from "../ui/labels";
 import { link } from "../ui/router";
-
-export const FEEDBACK_REASONS: Record<FeedbackReason, string> = {
-  out_of_date: "Out of date",
-  missing_steps: "Missing steps",
-  incorrect: "Incorrect",
-  hard_to_follow: "Hard to follow",
-};
-
-const RETIREMENT_REASONS: Record<RetirementReason, string> = {
-  obsolete: "Obsolete: no longer applies",
-  superseded: "Superseded by another article",
-  duplicate: "Duplicate of another article",
-};
 
 export function ArticleView({ id, via }: { id: string; via: "search" | "browse" }) {
   const { kb, actor, recordView } = useStore();

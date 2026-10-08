@@ -166,7 +166,8 @@ p { margin: 0; }
 .article-row__main { display: flex; flex-direction: column; min-width: 0; }
 .article-row__title { font-weight: 600; text-decoration: none; }
 .article-row__title:hover { text-decoration: underline; }
-.article-row__meta { font-size: 13px; color: var(--muted); display: inline-flex; flex-wrap: wrap; gap: 0 4px; align-items: center; }
+.article-row__meta { font-size: 13px; color: var(--muted); }
+.article-row__meta .badge { vertical-align: 1px; }
 .article-row__badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
 
 /* Article */

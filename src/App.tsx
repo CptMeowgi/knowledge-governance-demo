@@ -96,7 +96,7 @@ function Shell() {
             case "new":
               return <NewArticle query={query} />;
             case "review":
-              return <ReviewQueue />;
+              return <ReviewQueue key={actor.id} />;
             case "gaps":
               return <Gaps />;
             case "report":

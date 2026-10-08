@@ -13,7 +13,8 @@ const submittedAt = (article: Article) =>
 
 export function ReviewQueue() {
   const { kb, actor, now } = useStore();
-  const [scope, setScope] = useState<"mine" | "everyone">("mine");
+  // Knowledge managers oversee everything, so they start on the whole picture.
+  const [scope, setScope] = useState<"mine" | "everyone">(actor.role === "knowledge_manager" ? "everyone" : "mine");
   const context = { kb, actorId: actor.id, now };
   const involves = (...ids: (string | null | undefined)[]) => scope === "everyone" || ids.includes(actor.id);
 

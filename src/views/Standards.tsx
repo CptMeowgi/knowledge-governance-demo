@@ -35,9 +35,9 @@ export function Standards() {
   return (
     <>
       <PageHead title="Standards">
-        The rules content is held to. Templates fix each article's shape, the glossary fixes its wording, and the policy
-        fixes every threshold the rest of the app applies. None of this is advisory: submission is blocked until the
-        content complies.
+        The rules content is held to. Templates fix each article's shape and the glossary fixes its wording; both are
+        enforced, so submission is blocked until the content complies. The policy sets every threshold the rest of the
+        app applies.
       </PageHead>
 
       <section className="card">

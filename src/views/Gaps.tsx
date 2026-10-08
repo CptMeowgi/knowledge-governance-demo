@@ -4,8 +4,8 @@ import { POLICY } from "../domain/policy";
 import { useStore } from "../store/store";
 import { Badge, Empty, Notice, PageHead, PersonName, Reasons } from "../ui/bits";
 import { percent, plural } from "../ui/format";
+import { FEEDBACK_REASONS } from "../ui/labels";
 import { link } from "../ui/router";
-import { FEEDBACK_REASONS } from "./ArticleView";
 
 const SIGNALS: Record<ArticleSignal, string> = {
   low_helpfulness: "Low helpfulness",
